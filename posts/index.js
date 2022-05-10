@@ -24,13 +24,17 @@ app.post("/posts", async (req, res) => {
     title,
   };
 
-  await axios.post("http://127.0.0.1:4005/events", {
-    type: "PostCreated",
-    data: {
-      id,
-      title,
-    },
-  });
+  await axios
+    .post("http://192.168.1.25:4005/events", {
+      type: "PostCreated",
+      data: {
+        id,
+        title,
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   res.status(201).send(posts[id]);
 });
 

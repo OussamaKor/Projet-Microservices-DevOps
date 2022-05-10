@@ -1,17 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-
+const cors = require('cors')
 const app = express();
-
+app.use(cors())
 app.use(bodyParser.json());
 
 app.post("/events", (req, res) => {
   const event = req.body;
 
-  axios.post("http://127.0.0.1:4000/events", event);
-  axios.post("http://127.0.0.1:4001/events", event);
-  axios.post("http://127.0.0.1:4002/events", event);
+  axios.post("http://192.168.1.25:4000/events", event);
+  axios.post("http://192.168.1.25:4001/events", event);
+  axios.post("http://192.168.1.25:4002/events", event);
 
   res.send({status:'OK'});
 });
